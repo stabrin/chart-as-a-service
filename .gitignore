@@ -1,13 +1,26 @@
-# Virtual Environment
-venv/
-
-# Python cache
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# IDE settings
+# Virtualenv
+venv/
+env/
+.venv/
+
+# Docker
+.dockerignore
+
+# IDE / Editor files
 .vscode/
 .idea/
 
-# Env file with secrets
+# Environment variables
 .env
+*.env
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
