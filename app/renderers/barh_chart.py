@@ -56,7 +56,7 @@ def render(data: ChartData, options: ChartOptions) -> bytes:
             # align='center' - это значение по умолчанию, оно разместит полосу
             # ровно по центру вертикальной оси y_pos.
             align='center', 
-            label=ai_dataset.label or 'АИ'
+            label=ai_dataset.label or 'В тч с АИ'
         )
     ax.legend(loc='lower right', frameon=False)
     ax.invert_yaxis()
