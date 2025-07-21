@@ -45,7 +45,7 @@ def render(data: ChartData, options: ChartOptions) -> bytes:
             height=bar_height, # Та же высота, чтобы полностью перекрывать часть синей
             label=ai_dataset.label or 'АИ'
         )
-
+    ax.legend()
     # --- КОНЕЦ ИЗМЕНЕНИЙ ---
 
     ax.invert_yaxis()
