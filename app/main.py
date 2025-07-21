@@ -84,7 +84,7 @@ async def generate_and_send_from_get(
 
         # 2. Генерируем график
         chart_bytes = create_chart(chart_request)
-        final_image_bytes = add_watermark(chart_bytes, text="@IT-Workshop")
+        final_image_bytes = add_watermark(chart_bytes, text="@TabrinSergey")
 
         # 3. Отправляем в Telegram
         for chat_id in chat_ids:
