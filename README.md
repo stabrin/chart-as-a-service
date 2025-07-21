@@ -63,3 +63,15 @@
 ├── docker-compose.yml  # Оркестрация для разработки
 └── requirements.txt    # Python-зависимости
 ```
+Полезные команды
+git add .
+git commit -m "Add logo TabrinSergey"
+git push
+
+на боевом сервере
+cd project/chart-as-a-service/
+git pull
+docker compose -f docker-compose.prod.yml build --no-cache
+docker compose -f docker-compose.prod.yml up -d
+docker compose -f docker-compose.prod.yml logs
+docker compose -f docker-compose.prod.yml restart
