@@ -23,6 +23,7 @@ class ChartOptions(BaseModel):
     # Это поле станет менее используемым, т.к. цвета можно задавать в Dataset
     colors: Optional[List[str]] = None
     figsize: Optional[List[int]] = [10, 6]
+    bar_height: Optional[float] = None
 
 # Основная модель запроса остается прежней
 class ChartRequest(BaseModel):
