@@ -38,14 +38,28 @@ def render(data: ChartData, options: ChartOptions) -> bytes:
 
     # 2. Если есть данные для АИ, рисуем вложенную (зеленую) полосу поверх
     if ai_dataset:
+        ai_bar_height = bar_height * 0.5
+        
+        # Matplotlib по умолчанию рисует полосы, выравнивая их по центру.
+        # Чтобы сместить нашу зеленую полосу, нам нужно вычислить ее нижнюю
+        # координату Y. Мы не можем просто использовать data.labels,
+        # так как это строки. Нам нужны числовые позиции.
+        import numpy as np
+        y_pos = np.arange(len(data.labels))
+        
         ax.barh(
-            data.labels,
+            y_pos, # Используем числовые позиции вместо текстовых меток
             ai_dataset.data,
-            color='#4CAF50',  # Приятный зеленый
-            height=bar_height, # Та же высота, чтобы полностью перекрывать часть синей
+            color='#4CAF50',
+            # Устанавливаем нашу новую, уменьшенную высоту
+            height=ai_bar_height,
+            # align='center' - это значение по умолчанию, оно разместит полосу
+            # ровно по центру вертикальной оси y_pos.
+            align='center', 
             label=ai_dataset.label or 'АИ'
         )
-    ax.legend()
+    ax.legend(loc='lower right', frameon=False)
+    ax.invert_yaxis()
     # --- КОНЕЦ ИЗМЕНЕНИЙ ---
 
     ax.invert_yaxis()
