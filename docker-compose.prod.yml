@@ -1,0 +1,24 @@
+services:
+  chart-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chart-api-prod
+    restart: always
+    env_file:
+      - .env
+    # Порт 8000 больше не нужно "пробрасывать" наружу,
+    # так как Nginx будет обращаться к нему напрямую по внутренней сети Docker.
+    # ports: # <-- Эта секция больше не нужна
+    #   - "127.0.0.1:8000:8000"
+    networks:
+      - app-portal_default
+    # Явно указываем команду для запуска, чтобы гарантировать,
+    # что Uvicorn будет слушать на всех интерфейсах (0.0.0.0).
+    # Это необходимо для связи с Nginx по внутренней сети Docker.
+    # Флаг --reload здесь не нужен, так как в production код не меняется.
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+networks:
+  app-portal_default:
+    external: true

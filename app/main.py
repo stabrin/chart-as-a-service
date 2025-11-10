@@ -15,7 +15,12 @@ from .core.telegram_sender import send_photo_to_telegram
 app = FastAPI(
     title="Chart-as-a-Service",
     description="API для генерации графиков на лету.",
-    version="1.0.0"
+    version="1.0.0",
+    # Указываем FastAPI, что он работает за прокси по пути /chart-api.
+    # Это нужно для корректной работы интерактивной документации (Swagger/ReDoc).
+    # Теперь FastAPI будет генерировать все URL-адреса, начиная с этого префикса.
+    # Например, путь к документации станет /chart-api/docs.
+    root_path="/chart-api"
 )
 
 @app.post("/generate_chart")
